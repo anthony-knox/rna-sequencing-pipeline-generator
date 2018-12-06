@@ -6,7 +6,8 @@ Detailed instructions are provided to the user for each required step. Additiona
 
 ## Getting Started
 
-INSTRUCTIONS FOR DOWNLOADING AND RUNNING JAR
+1. Download the JAR file containing the executable program [here](https://github.com/anthony-knox/rna-sequencing-pipeline-generator/blob/master/RNA-Sequencing_Pipeline_Generator.jar).
+2. Either double click the file or `cd` to the directory that contains the JAR file and enter `java -jar RNA-Sequencing_Pipeline_Generator.jar`
 
 ### Prerequisites
 
