@@ -25,13 +25,13 @@ Detailed instructions are provided to the user for each required step. Additiona
 
 _Currently this program is only supported on Mac OS. Support for Windows will be provided in the future. Windows users will need to look into installing [Cygwin](https://www.howtogeek.com/howto/41382/how-to-use-linux-commands-in-windows-with-cygwin/) and will need to alter the bash scripts to support Windows functionality._
 
-#### Files and Directories
+#### Files and Directories Requirements
 
 1. The absolute path of the present working directory
 	* Example: `/Users/userName/Desktop/RNA_Seq_Analysis`
 	* If using either Windows or Mac, enter the path with forward slashes as shown
 	* Initially creating an empty directory is suggested
-2. The sample accession numbers (if downloading from NCBI), sample names, and conditions for each sample, separated by a comma
+2. The sample accession numbers (if downloading from NCBI), sample names, and conditions for each sample, separated by a comma: `<accession#>,<samplename>,<condition>`
 	* Example: `SRR1027605,C9_52i_run1,exp`
 3. If downloading from NCBI is not necessary, the fastq files must be gzipped and named according to the sample names
 	* Example: `C9_52i_run1.fastq.gz`

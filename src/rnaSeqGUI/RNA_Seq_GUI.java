@@ -53,17 +53,20 @@ public class RNA_Seq_GUI extends Application {
 	private InputStream deseq2InstructionsFile = classLoader.getResourceAsStream("deseq2Instructions.md"),
 			fastqDumpInstructionsBeginFile = classLoader.getResourceAsStream("fastqDumpInstructionsBegin.md"),
 			fastqDumpInstructionsEndFile = classLoader.getResourceAsStream("fastqDumpInstructionsEnd.md"),
-			fastqDumpInstructionsScriptPairedFile = classLoader.getResourceAsStream(
-					"fastqDumpInstructionsScriptPaired.md"),
-			fastqDumpInstructionsScriptSingleFile = classLoader.getResourceAsStream(
-					"fastqDumpInstructionsScriptSingle.md"),
-			fragmentLengthStdDevInstructionsFile = classLoader.getResourceAsStream("fragmentLengthStdDevInstructions.md"),
+			fastqDumpInstructionsScriptPairedFile = classLoader
+					.getResourceAsStream("fastqDumpInstructionsScriptPaired.md"),
+			fastqDumpInstructionsScriptSingleFile = classLoader
+					.getResourceAsStream("fastqDumpInstructionsScriptSingle.md"),
+			fragmentLengthStdDevInstructionsFile = classLoader
+					.getResourceAsStream("fragmentLengthStdDevInstructions.md"),
 			kallistoInstructionsBeginFile = classLoader.getResourceAsStream("kallistoInstructionsBegin.md"),
 			kallistoInstructionsEndFile = classLoader.getResourceAsStream("kallistoInstructionsEnd.md"),
-			kallistoInstructionsScriptPairedFile = classLoader.getResourceAsStream("kallistoInstructionsScriptPaired.md"),
-			kallistoInstructionsScriptSingleFile = classLoader.getResourceAsStream("kallistoInstructionsScriptSingle.md"),
+			kallistoInstructionsScriptPairedFile = classLoader
+					.getResourceAsStream("kallistoInstructionsScriptPaired.md"),
+			kallistoInstructionsScriptSingleFile = classLoader
+					.getResourceAsStream("kallistoInstructionsScriptSingle.md"),
 			moveFastqFilesInstructionsFile = classLoader.getResourceAsStream("moveFastqFilesInstructions.md");
-	
+
 	// Flags are final by nature of the FlagForCodeSubstitution being immutable
 	private FlagForCodeSubstitution PWD_ABSOLUTEPATH_FLAG, KALLISTO_ABSOLUTEPATH_FLAG,
 			KALLISTO_SHELLSCRIPTS_ABSOLUTEPATH_FLAG, KALLISTO_SAMPLES_ABSOLUTEPATH_FLAG,
@@ -135,7 +138,7 @@ public class RNA_Seq_GUI extends Application {
 		sampleNamesInputTextArea = new TextArea();
 		sampleNamesInputTextArea.setWrapText(false);
 		sampleNamesInputTextArea.setEditable(true);
-		sampleNamesInputTextArea.setMaxSize(WIDTH_OF_GUI / 3, (HEIGHT_OF_GUI / 6) + 10);
+		sampleNamesInputTextArea.setMaxSize(WIDTH_OF_GUI / 3, (HEIGHT_OF_GUI / 4));
 		// So that the user can paste from excel - replaces \r with \n for a
 		// newline
 		UnaryOperator<Change> filter = c -> {
@@ -147,10 +150,10 @@ public class RNA_Seq_GUI extends Application {
 		// Instructions
 		sampleNamesInputInstructions = new Text();
 		sampleNamesInputInstructions
-				.setText("Check the execution log to make sure the file structure was set up properly. "
+				.setText("Check the execution log to make sure the file structure was set up properly.\n\n"
 						+ "Please enter the accession number (if performing fastq dump, otherwise put \"none\"), "
 						+ "sample names, and the condition for that sample, with a comma "
-						+ "separating each component, one accession#,sample,condition per line. "
+						+ "separating each component, one <accession#>,<sample name>,<condition> per line. "
 						+ "Example: \"SRR1027605,C9_52i_run1,exp\". "
 						+ "Sample names should not include any spaces or illegal "
 						+ "characters for filenames. Press the button to continue. Directories for each sample will be "
@@ -177,11 +180,11 @@ public class RNA_Seq_GUI extends Application {
 		// Instructions
 		fastqDumpInstructions = new Text();
 		fastqDumpInstructions.setText("Check the execution log to make sure the directories for each sample were "
-				+ "created properly and that your samples.txt file in the kallisto directory was filled with the "
-				+ "correct sample names. Then make the proper choices below. When you click \"Generate fastq "
+				+ "created properly and that your samples_kallisto.txt file in the kallisto directory was filled with the "
+				+ "correct sample names. Then make the proper choices below.\n\nWhen you click \"Generate fastq "
 				+ "dump instructions\", instructions will be provided for performing a fastq dump (or moving "
 				+ "your fastq files to the proper place if you don't need to download from NCBI). These "
-				+ "instructions will be appended to your RNA_Seq_Pipeline.txt file.");
+				+ "instructions will be appended to your RNA_Seq_Pipeline.md file.");
 		TextFlow textFlowFastqDumpInstructions = new TextFlow(fastqDumpInstructions);
 		setTextFlowLayout(textFlowFastqDumpInstructions);
 
@@ -219,9 +222,9 @@ public class RNA_Seq_GUI extends Application {
 
 		// Instructions
 		kallistoInstructions = new Text(
-				"After following instructions for the fastq dump, close the RNA_Seq_Pipeline.txt "
-						+ "file, then click the button below to generate instructions for kallisto alignment, "
-						+ "which will be appended to the RNA_Seq_Pipeline.txt file.");
+				"After following instructions for the fastq dump, close the RNA_Seq_Pipeline.md "
+						+ "file, then click the button below to generate instructions for Kallisto alignment, "
+						+ "which will be appended to the RNA_Seq_Pipeline.md file.");
 		TextFlow textFlowKallistoInstructions = new TextFlow(kallistoInstructions);
 		setTextFlowLayout(textFlowKallistoInstructions);
 
@@ -251,9 +254,9 @@ public class RNA_Seq_GUI extends Application {
 		 * Write to the pipeline file the instructions for DESeq2
 		 */
 		deseq2Instructions = new Text(
-				"After following instructions for kallisto alignment, close the RNA_Seq_Pipeline.txt "
+				"After following instructions for kallisto alignment, close the RNA_Seq_Pipeline.md "
 						+ "file, then click the button below to generate instructions for differential expression analysis, "
-						+ "which will be appended to the RNA_Seq_Pipeline.txt file.");
+						+ "which will be appended to the RNA_Seq_Pipeline.md file.");
 		TextFlow textFlowDeseq2Instructions = new TextFlow(deseq2Instructions);
 		setTextFlowLayout(textFlowDeseq2Instructions);
 
@@ -339,7 +342,8 @@ public class RNA_Seq_GUI extends Application {
 	 */
 	private String getInstructionsTextWithFlagSubstitutions(InputStream instructionsFile) {
 		Alert supportingFileNotFoundError = new Alert(AlertType.ERROR);
-		supportingFileNotFoundError.setContentText("Supporting file for generating pipeline instructions not found. JAR file may be corrupt.");
+		supportingFileNotFoundError.setContentText(
+				"Supporting file for generating pipeline instructions not found. JAR file may be corrupt.");
 
 		try (Scanner scanFile = new Scanner(instructionsFile)) {
 			// \Z delimiter is for the end of the input, but for the final terminator -
@@ -444,9 +448,9 @@ public class RNA_Seq_GUI extends Application {
 			currentPWDText.setVisible(true);
 
 			// Error message for later
-			appendToRNASeqPipelineFileError = "Attempted to append text to RNA_Seq_Pipeline.txt file, but file "
+			appendToRNASeqPipelineFileError = "Attempted to append text to RNA_Seq_Pipeline.md file, but file "
 					+ "does not exist. Please create a text file at: " + pWD.getAbsolutePath()
-					+ "/RNA_Seq_Pipeline.txt\nYou will have to click Clear and then Create File Structure "
+					+ "/RNA_Seq_Pipeline.md\nYou will have to click Clear and then Create File Structure "
 					+ "once more.";
 
 			// Create pipelineFile
@@ -571,10 +575,12 @@ public class RNA_Seq_GUI extends Application {
 
 		// Make next section visible
 		fastqDumpOptionsVBox.setVisible(true);
+		// scroll to the bottom of the main scroll pane
+		mainScrollPane.setVvalue(1.0);
 	}
 
 	/*
-	 * Appends instruction for fastq-dump to RNA_Seq_Pipeline.txt file. This is
+	 * Appends instruction for fastq-dump to RNA_Seq_Pipeline.md file. This is
 	 * based on whether or not the user needs to download from NCBI or not, and if
 	 * the fastq files are single-end or paired-end. Also appends instructions for
 	 * determining fragment length and standard deviation of reads if single-end.
@@ -601,11 +607,12 @@ public class RNA_Seq_GUI extends Application {
 				singleTPairedF = true;
 				singleEndInstructions.setText("Since your fastq files are single end, you will need to specify your "
 						+ "estimated average fragment length and estimated standard deviation of fragment length. "
-						+ "Instructions for doing so have been provided in the RNA_Seq_Pipeline.txt file. Please "
+						+ "Instructions for doing so have been provided in the RNA_Seq_Pipeline.md file. Please "
 						+ "follow these instructions and enter the values below before proceeding with Kallisto "
 						+ "alignment.");
 				singleEndInputHBox.setVisible(true);
 			} else if (pairedEnd.isSelected()) {
+				singleEndInputHBox.setVisible(false);
 				singleTPairedF = false;
 			} else {
 				buttonUnpressedAlert.showAndWait();
@@ -654,7 +661,7 @@ public class RNA_Seq_GUI extends Application {
 	}
 
 	/*
-	 * Appends instructions for kallisto alignment to the RNA_Seq_Pipeline.txt file
+	 * Appends instructions for kallisto alignment to the RNA_Seq_Pipeline.md file
 	 * depending on if the fastq files are single or paired end. Also reads in
 	 * fragment length and standard deviation values from user.
 	 */
@@ -714,10 +721,13 @@ public class RNA_Seq_GUI extends Application {
 		} catch (IOException ex) {
 			appendToExecutionLogNewLine(appendToRNASeqPipelineFileError);
 		}
+		
+		// scroll to the bottom of the main scroll pane
+		mainScrollPane.setVvalue(1.0);
 	}
 
 	/*
-	 * Appends instructions for DESeq2 to the RNA_Seq_Pipeline.txt file. Includes a
+	 * Appends instructions for DESeq2 to the RNA_Seq_Pipeline.md file. Includes a
 	 * script for moving abundance.h5 file to the correct directory as well as the
 	 * code for input into RStudio
 	 */
