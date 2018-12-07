@@ -23,6 +23,8 @@ Detailed instructions are provided to the user for each required step. Additiona
 	* If using Google Chrome, the [Markdown Preview Extension](https://chrome.google.com/webstore/detail/markdown-preview/jmchmkecamhbiokiopfpnfgbidieafmd?hl=en) is very useful to view markdown files
 		* Download the extension, then navigate to `chrome://extensions` in your browser, click `Details`, and check `Allow access to file URLs`
 
+_Currently this program is only supported on Mac OS. Support for Windows will be provided in the future. Windows users will need to look into installing [Cygwin](https://www.howtogeek.com/howto/41382/how-to-use-linux-commands-in-windows-with-cygwin/) and will need to alter the bash scripts to support Windows functionality._
+
 #### Files and Directories
 
 1. The absolute path of the present working directory
