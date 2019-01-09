@@ -4,6 +4,8 @@ The RNA-Sequencing Pipeline Generator is a program that provides detailed instru
 
 Detailed instructions are provided to the user for each required step. Additionally, shell scripts are provided to automate various steps, such as downloading fastq files for a list of specified NCBI accession numbers. Output from this program includes transcript level abundances, a normalized counts matrix, a list of up- and down-regulated genes, hierarchical clustering heatmaps, PCA plots, and bi-modality analysis via the SIBER and DEXUS packages. Sample code is provided for each of these types of analyses, but the user can explore each function further to specify parameters that meet their own needs. Additionally, further resources are provided which allow for downstream analysis on your normalized counts matrix.
 
+Please see [an example pipeline output](https://github.com/anthony-knox/rna-sequencing-pipeline-generator/blob/master/ExamplePipelineOutput.md) from the dataset mentioned below.
+
 ## Getting Started
 
 1. Download the JAR file containing the executable program [here](https://github.com/anthony-knox/rna-sequencing-pipeline-generator/blob/master/RNA-Sequencing_Pipeline_Generator.jar).
