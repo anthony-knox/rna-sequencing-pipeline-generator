@@ -1,6 +1,6 @@
 Pipeline created: 2019/01/09 10:58:11
 
-#Fastq Dump Instructions
+# Fastq Dump Instructions
 Please visit [the SRA toolkit download page](https://www.ncbi.nlm.nih.gov/sra/docs/toolkitsoft/) to download the latest version of the SRA toolkit.
 Unzip the file, rename the main directory to `sratoolkit` and move it to `/Users/anthonyknox/Desktop/RNA_Seq_Analysis`
 
@@ -40,7 +40,7 @@ Your fastq files are now downloading. This may take a long time depending on the
 
 The fastq files will download to `/Users/anthonyknox/Desktop/RNA_Seq_Analysis/kallisto` in their respective directory.
 
-#Instructions for fragment length and standard deviation
+# Instructions for fragment length and standard deviation
 
 Since your fastq files are single end, you will need to specify your estimated average fragment length and estimated standard deviation of fragment length.
 If you don't know these values, open a terminal/command prompt window and `cd` to one of your sample directories in `/Users/anthonyknox/Desktop/RNA_Seq_Analysis/kallisto`.
@@ -55,7 +55,7 @@ Unzip all sample files so that they have a .fastq extension. Then copy and paste
 You can repeat this for multiple sample files if you want to get more accurate values for your average fragment length and standard deviation.
 Your fragment length average should be somewhere around 50 - 200, and your standard deviation should be somewhere around 0 - 20.
 
-#Instructions for Kallisto alignment
+# Instructions for Kallisto alignment
 
 [Kallisto manual](https://pachterlab.github.io/kallisto/manual)
 
@@ -143,7 +143,7 @@ This should exit the vi editor. Type in these commands one by one:
 
 You now have a csv file that you can use to analyze the raw data between samples via Excel. Each sample's data is placed horizontally to the next sample. Note that the data is placed horizontally based on lexicographical order of your samples (that which shows up in your terminal output after running the script). If you only want specific columns, you can edit the shell script at the line that begins with "paste ..." and only include the column numbers that you want. For example, if you only want the tpm column, include only $5. Be careful in drawing conclusions about the data because these are raw counts that have not been normalized or applied to statistical models that are used in the DESeq2 package.
 
-#Instructions for DESeq2
+# Instructions for DESeq2
 
 You will need to move the abundance.h5 file for each sample to their respective directory within the DESeq2 directory. Enter these commands, one by one in a terminal or command prompt window.
 
