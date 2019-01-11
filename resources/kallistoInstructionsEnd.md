@@ -52,6 +52,8 @@ This brings you to the vi editor to create a shell script. Press `i` then copy a
 Press `esc` and then type in `:wq` and press enter. 
 This should exit the vi editor. Type in these commands one by one:
 
+	chmod u+x merge_tsv_files.sh
+	
 	./merge_tsv_files.sh
 
 You now have a csv file that you can use to analyze the raw data between samples via Excel. Each sample's data is placed horizontally to the next sample. Note that the data is placed horizontally based on lexicographical order of your samples (that which shows up in your terminal output after running the script). If you only want specific columns, you can edit the shell script at the line that begins with "paste ..." and only include the column numbers that you want. For example, if you only want the tpm column, include only $5. Be careful in drawing conclusions about the data because these are raw counts that have not been normalized or applied to statistical models that are used in the DESeq2 package.
